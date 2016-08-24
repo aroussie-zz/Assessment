@@ -15,7 +15,8 @@ import com.allstate.alexandreroussiere.allstate.network.OnCoordinatesChangedList
 /**
  * Created by Alexandre Roussière on 23/08/2016.
  */
-public class AccelerometerFragment extends Fragment implements OnCoordinatesChangedListener, View.OnClickListener {
+public class AccelerometerFragment extends Fragment implements OnCoordinatesChangedListener,
+        View.OnClickListener {
 
     private static final String TAG = "AccelerometerFragment";
 

@@ -71,9 +71,15 @@ public class FactsFragment extends Fragment implements OnDataFetchedListener,But
         button_add.setOnClickListener(this);
     }
 
+    private void setViews(){
+        recyclerView = (RecyclerView) view.findViewById(R.id.factsFound_list);
+        emptyView = (TextView)view.findViewById(R.id.empty_view);
+        button_add = (Button)view.findViewById(R.id.button_add);
+    }
+
     @Override
     public void displayErrorMessage(String errorMessage) {
-        Toast.makeText(getContext(),errorMessage,Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -82,9 +88,5 @@ public class FactsFragment extends Fragment implements OnDataFetchedListener,But
         presenter.fetchData();
     }
 
-    private void setViews(){
-        recyclerView = (RecyclerView) view.findViewById(R.id.factsFound_list);
-        emptyView = (TextView)view.findViewById(R.id.empty_view);
-        button_add = (Button)view.findViewById(R.id.button_add);
-    }
+
 }

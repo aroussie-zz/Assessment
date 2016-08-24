@@ -3,9 +3,15 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- Empty View of Cat Facts -->
     <dimen name="empty_view_text">32sp</dimen>
 
+    <!-- facts_row_layout -->
     <dimen name="padding_default_row">10sp</dimen>
+
+    <!-- facts_layout -->
     <dimen name="margin_button_add">10sp</dimen>
+
+    <!-- accelerometer_layout -->
     <dimen name="margin_bottom_coordinates">20sp</dimen>
 </resources>

@@ -14,8 +14,9 @@
     <!-- Message for empty Recycler View -->
     <string name="empty_view_text">No facts found</string>
 
-    <!-- Add button text -->
+    <!-- Add button text for Cat Facts -->
     <string name="button_add_text">Add a new fact</string>
+
     <string name="title_activity_map_fragment">Map</string>
 
     <!-- Map Fragment -->

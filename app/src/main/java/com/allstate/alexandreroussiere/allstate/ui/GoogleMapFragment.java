@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.allstate.alexandreroussiere.allstate.Constant;
 import com.allstate.alexandreroussiere.allstate.R;
 import com.google.android.gms.common.ConnectionResult;
@@ -66,7 +65,6 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback,
                 //Activate the button My Position
                 mMap.setMyLocationEnabled(true);
             }
-        //Otherwise
         } else {
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
@@ -96,7 +94,7 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback,
                         Constant.MY_PERMISSIONS_REQUEST_LOCATION);
 
             } else {
-                // No explanation needed, we can request the permission.
+
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         Constant.MY_PERMISSIONS_REQUEST_LOCATION);
             }
@@ -136,7 +134,6 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback,
                     mMap.setMyLocationEnabled(false);
 
                 }
-                return;
             }
         }
     }

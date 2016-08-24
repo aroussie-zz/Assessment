@@ -4,16 +4,10 @@ import android.content.Context;
 import android.util.Log;
 
 import com.allstate.alexandreroussiere.allstate.Constant;
-import com.allstate.alexandreroussiere.allstate.R;
-import com.allstate.alexandreroussiere.allstate.database.CatFact;
 import com.allstate.alexandreroussiere.allstate.helper.DatabaseHelper;
 import com.allstate.alexandreroussiere.allstate.model.Facts;
 import com.allstate.alexandreroussiere.allstate.network.FactsService;
 import com.allstate.alexandreroussiere.allstate.network.OnDataFetchedListener;
-import com.squareup.okhttp.OkHttpClient;
-
-import java.io.IOException;
-
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
@@ -32,10 +26,9 @@ public class FactsPresenter {
     private Facts facts;
     private DatabaseHelper database;
 
-    public FactsPresenter(OnDataFetchedListener listener,Context context){
+    public FactsPresenter(OnDataFetchedListener listener, Context context){
 
         this.listener = listener;
-
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constant.API_URL)

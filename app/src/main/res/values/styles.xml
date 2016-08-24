@@ -12,7 +12,6 @@
     <style name="MyToolbar" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- title text color -->
         <item name="android:textColorPrimary">@color/ToolbarText</item>
-
     </style>
 
 

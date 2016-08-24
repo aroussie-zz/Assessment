@@ -22,7 +22,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_layout);
-
         setToolbar();
         setDrawerNavigation();
 
@@ -66,8 +65,8 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
                 if ( fragment != null ){
-                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
+                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.content_frame,fragment);
                     fragmentTransaction.commit();
                     drawerLayout.closeDrawers();
