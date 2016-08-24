@@ -7,4 +7,14 @@
     <string name="accelerometer_title">Accelerometer</string>
     <string name="facts_title">Cat facts</string>
 
+    <!-- Error messages for Facts -->
+    <string name="NoFactsFound">No facts found</string>
+    <string name="ErrorFetchingData">Error fetching data</string>
+
+    <!-- Message for empty Recycler View -->
+    <string name="empty_view_text">No facts found</string>
+
+    <!-- Add button text -->
+    <string name="button_add_text">Add a new fact</string>
+
 </resources>
