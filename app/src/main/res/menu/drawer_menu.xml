@@ -3,15 +3,15 @@
 
     <item
         android:id="@+id/facts"
-        android:title="Cat facts" />
+        android:title="@string/facts_title" />
 
     <item
         android:id="@+id/map"
-        android:title="Map" />
+        android:title="@string/map_title" />
 
     <item
         android:id="@+id/accelerometer"
-        android:title="Accelerometer" />
+        android:title="@string/accelerometer_title" />
 
 </menu>
 

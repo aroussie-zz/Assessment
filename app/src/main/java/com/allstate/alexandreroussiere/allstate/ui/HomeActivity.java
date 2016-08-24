@@ -24,7 +24,12 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.home_layout);
         setToolbar();
         setDrawerNavigation();
+    }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        loadLaunchFragment();
     }
 
     private void setToolbar() {
@@ -33,7 +38,14 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.drawer_icon);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(R.string.home_title);
+        getSupportActionBar().setTitle(R.string.facts_title);
+    }
+
+    private void loadLaunchFragment(){
+        Fragment fragment = new FactsFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame,fragment);
+        fragmentTransaction.commit();
     }
 
     private void setDrawerNavigation() {
@@ -48,31 +60,27 @@ public class HomeActivity extends AppCompatActivity {
                 Fragment fragment = null;
                 int itemId = item.getItemId();
 
-                if ( itemId == R.id.facts ) {
+                if (itemId == R.id.facts) {
                     fragment = new FactsFragment();
                     getSupportActionBar().setTitle(R.string.facts_title);
                 }
-
-                else if ( itemId == R.id.map ){
+                else if (itemId == R.id.map){
                     fragment = new GoogleMapFragment();
                     getSupportActionBar().setTitle(R.string.map_title);
 
                 }
-
-                else if ( itemId == R.id.accelerometer ){
+                else if (itemId == R.id.accelerometer){
                     fragment = new AccelerometerFragment();
                     getSupportActionBar().setTitle(R.string.accelerometer_title);
                 }
 
-                if ( fragment != null ){
-
+                if (fragment != null){
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.content_frame,fragment);
                     fragmentTransaction.commit();
                     drawerLayout.closeDrawers();
                     return true;
                 }
-
                 return false;
             }
         });
@@ -83,17 +91,12 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int itemId = item.getItemId();
-
-        switch(itemId) {
-
+        switch (itemId) {
             case android.R.id.home: {
-
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
             }
         }
-
         return false;
-
     }
 }

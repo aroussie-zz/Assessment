@@ -21,7 +21,6 @@ public class FactsAdapter extends RecyclerView.Adapter<FactsAdapter.FactsRowHold
 
     @Override
     public FactsRowHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.facts_row_layout,null);
         mContext = parent.getContext();
         return new FactsRowHolder(v);
@@ -29,10 +28,8 @@ public class FactsAdapter extends RecyclerView.Adapter<FactsAdapter.FactsRowHold
 
     @Override
     public void onBindViewHolder(FactsRowHolder holder, int position) {
-
         String fact = data.get(position);
         holder.facts.setText(fact);
-
     }
 
     @Override
@@ -41,7 +38,6 @@ public class FactsAdapter extends RecyclerView.Adapter<FactsAdapter.FactsRowHold
     }
 
     public class FactsRowHolder extends RecyclerView.ViewHolder {
-
         TextView facts;
         public FactsRowHolder(View itemView) {
             super(itemView);

@@ -7,11 +7,11 @@
     <dimen name="empty_view_text">32sp</dimen>
 
     <!-- facts_row_layout -->
-    <dimen name="padding_default_row">10sp</dimen>
+    <dimen name="padding_default_row">10dp</dimen>
 
     <!-- facts_layout -->
-    <dimen name="margin_button_add">10sp</dimen>
+    <dimen name="margin_button_add">10dp</dimen>
 
     <!-- accelerometer_layout -->
-    <dimen name="margin_bottom_coordinates">20sp</dimen>
+    <dimen name="margin_bottom_coordinates">20dp</dimen>
 </resources>

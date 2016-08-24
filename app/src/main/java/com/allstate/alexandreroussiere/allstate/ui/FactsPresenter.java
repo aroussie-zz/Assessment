@@ -27,9 +27,7 @@ public class FactsPresenter {
     private DatabaseHelper database;
 
     public FactsPresenter(OnDataFetchedListener listener, Context context){
-
         this.listener = listener;
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constant.API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -45,37 +43,30 @@ public class FactsPresenter {
             @Override
             public void onResponse(Response<Facts> response, Retrofit retrofit) {
 
-                if ( response != null ) {
+                if (response != null) {
                     facts = response.body();
-                    if ( facts != null ) {
+                    if (facts != null) {
                         addFactInDatabase(facts.getFacts().get(0));
-                        listener.updateUI(database.getAllFactsFromDatabase());
                     } else {
                         listener.updateUI(database.getAllFactsFromDatabase());
                     }
                 }
             }
-
             @Override
             public void onFailure(Throwable t) {
                 Log.e(TAG, "Error fetching Data");
                 t.printStackTrace();
                 listener.displayErrorMessage("Error fetching data");
             }
-
-
         });
     }
 
     private void addFactInDatabase(String fact){
-
         database.addFactToDatabase(fact);
         listener.updateUI(database.getAllFactsFromDatabase());
     }
 
-
     public void displayFacts(){
-
         listener.updateUI(database.getAllFactsFromDatabase());
     }
 

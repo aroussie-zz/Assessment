@@ -11,6 +11,6 @@ import retrofit.http.Query;
  */
 public interface FactsService {
 
-    @GET( "facts" )
-    Call<Facts> findFacts ( @Query("number") int numberMax );
+    @GET("facts")
+    Call<Facts> findFacts(@Query("number")int numberMax);
 }

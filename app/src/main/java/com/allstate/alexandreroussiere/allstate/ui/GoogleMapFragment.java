@@ -5,7 +5,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -41,35 +40,18 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback,
         view = inflater.inflate(R.layout.map_layout, container, false);
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
-
-        if ( android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
         }
-
         mapFragment.getMapAsync(this);
         return view;
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-
-        //If APK version = 23
-        if ( android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ) {
-            if ( ContextCompat.checkSelfPermission(getContext(),
-                    Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED ) {
-                buildGoogleApiClient();
-                //Activate the button My Position
-                mMap.setMyLocationEnabled(true);
-            }
-        } else {
-            buildGoogleApiClient();
-            mMap.setMyLocationEnabled(true);
-        }
-
+        buildGoogleApiClient();
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -81,26 +63,14 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback,
         mGoogleApiClient.connect();
     }
 
-    public boolean checkLocationPermission(){
+    public void checkLocationPermission(){
         //If the user has not activated his GPS
-        if ( ContextCompat.checkSelfPermission(getActivity(),
+        if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED ) {
+                != PackageManager.PERMISSION_GRANTED) {
 
-            if ( ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                    Manifest.permission.ACCESS_FINE_LOCATION) ) {
-
-                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         Constant.MY_PERMISSIONS_REQUEST_LOCATION);
-
-            } else {
-
-                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        Constant.MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-            return false;
-        } else {
-            return true;
         }
     }
 
@@ -116,23 +86,19 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback,
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     // permission is granted.
-                    if ( ContextCompat.checkSelfPermission(getActivity(),
+                    if (ContextCompat.checkSelfPermission(getActivity(),
                             Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED ) {
+                            == PackageManager.PERMISSION_GRANTED) {
 
-                        if ( mGoogleApiClient == null ) {
+                        if (mGoogleApiClient == null) {
                             buildGoogleApiClient();
-
                         }
                         mMap.setMyLocationEnabled(true);
                     }
-
                 } else {
-
                     // Permission denied
                     Toast.makeText(getContext(), "permission denied", Toast.LENGTH_LONG).show();
                     mMap.setMyLocationEnabled(false);
-
                 }
             }
         }

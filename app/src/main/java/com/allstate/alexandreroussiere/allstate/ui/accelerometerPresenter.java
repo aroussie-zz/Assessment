@@ -14,7 +14,6 @@ import com.allstate.alexandreroussiere.allstate.network.OnCoordinatesChangedList
  */
 public class AccelerometerPresenter implements SensorEventListener {
 
-
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private OnCoordinatesChangedListener listener;
@@ -22,7 +21,6 @@ public class AccelerometerPresenter implements SensorEventListener {
     private float x, y, z;
 
     public AccelerometerPresenter(OnCoordinatesChangedListener listener, Context context){
-
         mContext = context;
         this.listener = listener;
         sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
@@ -30,7 +28,7 @@ public class AccelerometerPresenter implements SensorEventListener {
     }
 
     private void checkAccelerometerExists(){
-        if ( sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null ){
+        if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null){
             accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         } else {
             Toast.makeText(mContext, "There is no accelerometer", Toast.LENGTH_LONG).show();
@@ -38,13 +36,10 @@ public class AccelerometerPresenter implements SensorEventListener {
     }
     @Override
     public void onSensorChanged(SensorEvent event){
-
         x = event.values[0];
         y = event.values[1];
         z = event.values[2];
-
         this.listener.updateUI(x, y, z);
-
     }
 
     @Override
@@ -53,13 +48,10 @@ public class AccelerometerPresenter implements SensorEventListener {
     }
 
     public void stopAccelerometer(){
-
         sensorManager.unregisterListener(this);
-
     }
 
     public void startAccelerometer(){
-
         sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 }

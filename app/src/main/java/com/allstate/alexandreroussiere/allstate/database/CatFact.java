@@ -17,7 +17,6 @@ public class CatFact extends RealmObject {
 
     public String getFact() { return fact; }
     public void setFact(String str) { fact = str; }
-
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 }

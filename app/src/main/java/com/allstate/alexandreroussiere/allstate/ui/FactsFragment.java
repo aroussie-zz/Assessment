@@ -32,7 +32,6 @@ public class FactsFragment extends Fragment implements OnDataFetchedListener,But
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         view = inflater.inflate(R.layout.facts_layout, container, false);
         setViews();
         return view;
@@ -43,24 +42,20 @@ public class FactsFragment extends Fragment implements OnDataFetchedListener,But
         super.onStart();
         setUp();
         presenter.displayFacts();
-
     }
 
     @Override
     public void updateUI(ArrayList<String> facts) {
 
         adapter.setData(facts);
-
-        if (adapter.getItemCount() != 0 ) {
+        if (adapter.getItemCount() != 0) {
             emptyView.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             emptyView.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         }
-
         adapter.notifyDataSetChanged();
-
     }
 
     private void setUp() {
@@ -84,7 +79,6 @@ public class FactsFragment extends Fragment implements OnDataFetchedListener,But
 
     @Override
     public void onClick(View v) {
-
         presenter.fetchData();
     }
 

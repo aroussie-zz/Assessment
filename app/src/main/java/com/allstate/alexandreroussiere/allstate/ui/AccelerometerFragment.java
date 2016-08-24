@@ -1,5 +1,6 @@
 package com.allstate.alexandreroussiere.allstate.ui;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -27,12 +28,11 @@ public class AccelerometerFragment extends Fragment implements OnCoordinatesChan
     private Button button;
     private AccelerometerPresenter presenter;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         view = inflater.inflate(R.layout.accelerometer_layout, container, false);
         setViews();
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         presenter = new AccelerometerPresenter(this, getContext());
         return view;
     }
@@ -41,6 +41,7 @@ public class AccelerometerFragment extends Fragment implements OnCoordinatesChan
     public void onPause() {
         super.onPause();
         presenter.stopAccelerometer();
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
     }
 
     private void setViews() {
@@ -56,7 +57,6 @@ public class AccelerometerFragment extends Fragment implements OnCoordinatesChan
         button.setText(R.string.buttonStart);
         button.setOnClickListener(this);
     }
-
 
     @Override
     public void updateUI(float x, float y, float z) {
