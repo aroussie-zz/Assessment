@@ -55,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
                 else if ( itemId == R.id.map ){
-                    fragment = new MapFragment();
+                    fragment = new GoogleMapFragment();
                     getSupportActionBar().setTitle(R.string.map_title);
 
                 }

@@ -36,20 +36,10 @@ public class FactsPresenter {
 
         this.listener = listener;
 
-        OkHttpClient httpClient = new OkHttpClient();
-        httpClient.interceptors().add(new com.squareup.okhttp.Interceptor() {
-            @Override
-            public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
-                Log.i(TAG, "URL: " + chain.request().url());
-                com.squareup.okhttp.Response response = chain.proceed(chain.request());
-                return response;
-            }
-        });
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constant.API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient)
                 .build();
         service = retrofit.create(FactsService.class);
         database = new DatabaseHelper(context);
@@ -62,12 +52,12 @@ public class FactsPresenter {
             @Override
             public void onResponse(Response<Facts> response, Retrofit retrofit) {
 
-                if (response != null) {
+                if ( response != null ) {
                     facts = response.body();
-                    if (facts != null ) {
+                    if ( facts != null ) {
                         addFactInDatabase(facts.getFacts().get(0));
                         listener.updateUI(database.getAllFactsFromDatabase());
-                    }else {
+                    } else {
                         listener.updateUI(database.getAllFactsFromDatabase());
                     }
                 }

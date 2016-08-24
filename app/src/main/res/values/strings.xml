@@ -16,5 +16,10 @@
 
     <!-- Add button text -->
     <string name="button_add_text">Add a new fact</string>
+    <string name="title_activity_map_fragment">Map</string>
+
+    <!-- Map Fragment -->
+    <string name="text_marker">Current position</string>
+
 
 </resources>
