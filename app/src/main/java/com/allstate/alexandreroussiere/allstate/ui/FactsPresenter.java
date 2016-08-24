@@ -29,7 +29,7 @@ public class FactsPresenter {
 
     private OnDataFetchedListener listener;
     private FactsService service;
-    private  Facts facts;
+    private Facts facts;
     private DatabaseHelper database;
 
     public FactsPresenter(OnDataFetchedListener listener,Context context){

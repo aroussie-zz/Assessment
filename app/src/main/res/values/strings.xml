@@ -21,5 +21,12 @@
     <!-- Map Fragment -->
     <string name="text_marker">Current position</string>
 
+    <!-- Accelerometer Fragment -->
+    <string name="coordinateX">X value: %.2f</string>
+    <string name="coordinateY">Y value: %.2f</string>
+    <string name="coordinateZ">Z value: %.2f</string>
+    <string name="buttonStart">Start</string>
+    <string name="buttonStop">Stop</string>
+
 
 </resources>

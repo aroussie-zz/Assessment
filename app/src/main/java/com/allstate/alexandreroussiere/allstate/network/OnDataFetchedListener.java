@@ -1,7 +1,5 @@
 package com.allstate.alexandreroussiere.allstate.network;
 
-import com.allstate.alexandreroussiere.allstate.model.Facts;
-
 import java.util.ArrayList;
 
 /**

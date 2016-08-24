@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,6 @@ import com.allstate.alexandreroussiere.allstate.R;
 import com.allstate.alexandreroussiere.allstate.network.OnDataFetchedListener;
 
 import java.util.ArrayList;
-
-import io.realm.Realm;
 
 /**
  * Created by Alexandre Roussière on 23/08/2016.
@@ -32,8 +29,6 @@ public class FactsFragment extends Fragment implements OnDataFetchedListener,But
     private FactsPresenter presenter;
     private TextView emptyView;
     private Button button_add;
-    private ArrayList<String> data;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,11 +41,7 @@ public class FactsFragment extends Fragment implements OnDataFetchedListener,But
     @Override
     public void onStart(){
         super.onStart();
-        presenter = new FactsPresenter(this,getContext());
-        adapter = new FactsAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(adapter);
-        button_add.setOnClickListener(this);
+        setUp();
         presenter.displayFacts();
 
     }
@@ -70,6 +61,14 @@ public class FactsFragment extends Fragment implements OnDataFetchedListener,But
 
         adapter.notifyDataSetChanged();
 
+    }
+
+    private void setUp() {
+        presenter = new FactsPresenter(this,getContext());
+        adapter = new FactsAdapter();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapter);
+        button_add.setOnClickListener(this);
     }
 
     @Override

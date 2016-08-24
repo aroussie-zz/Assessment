@@ -34,7 +34,7 @@ public class DatabaseHelper {
         //Auto-incrementation of the id
         try {
             id = database.where(CatFact.class).max("id").intValue() + 1;
-        } catch(ArrayIndexOutOfBoundsException ex) {
+        } catch( ArrayIndexOutOfBoundsException ex ) {
             id = 0;
         }
 
