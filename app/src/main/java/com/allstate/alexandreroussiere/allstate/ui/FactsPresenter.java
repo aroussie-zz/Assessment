@@ -1,16 +1,18 @@
 package com.allstate.alexandreroussiere.allstate.ui;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.allstate.alexandreroussiere.allstate.Constant;
 import com.allstate.alexandreroussiere.allstate.R;
+import com.allstate.alexandreroussiere.allstate.database.CatFact;
+import com.allstate.alexandreroussiere.allstate.helper.DatabaseHelper;
 import com.allstate.alexandreroussiere.allstate.model.Facts;
 import com.allstate.alexandreroussiere.allstate.network.FactsService;
 import com.allstate.alexandreroussiere.allstate.network.OnDataFetchedListener;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -25,11 +27,12 @@ public class FactsPresenter {
 
     private static final String TAG = "FactsPresenter";
 
-    OnDataFetchedListener listener;
-    FactsService service;
-    Facts facts;
+    private OnDataFetchedListener listener;
+    private FactsService service;
+    private  Facts facts;
+    private DatabaseHelper database;
 
-    public FactsPresenter(OnDataFetchedListener listener){
+    public FactsPresenter(OnDataFetchedListener listener,Context context){
 
         this.listener = listener;
 
@@ -49,7 +52,7 @@ public class FactsPresenter {
                 .client(httpClient)
                 .build();
         service = retrofit.create(FactsService.class);
-
+        database = new DatabaseHelper(context);
     }
 
     public void fetchData(){
@@ -61,11 +64,11 @@ public class FactsPresenter {
 
                 if (response != null) {
                     facts = response.body();
-                    Log.d(TAG,"facts: " + facts.getFacts().size());
                     if (facts != null ) {
-                        listener.updateUI(getFactsFound());
+                        addFactInDatabase(facts.getFacts().get(0));
+                        listener.updateUI(database.getAllFactsFromDatabase());
                     }else {
-                        listener.updateUI(new ArrayList<String>());
+                        listener.updateUI(database.getAllFactsFromDatabase());
                     }
                 }
             }
@@ -81,16 +84,16 @@ public class FactsPresenter {
         });
     }
 
-    private ArrayList<String> getFactsFound(){
+    private void addFactInDatabase(String fact){
 
-        ArrayList<String> response = new ArrayList<>();
-
-        for ( String fact: facts.getFacts()){
-            response.add(fact);
-        }
-
-        return response;
+        database.addFactToDatabase(fact);
+        listener.updateUI(database.getAllFactsFromDatabase());
     }
 
+
+    public void displayFacts(){
+
+        listener.updateUI(database.getAllFactsFromDatabase());
+    }
 
 }

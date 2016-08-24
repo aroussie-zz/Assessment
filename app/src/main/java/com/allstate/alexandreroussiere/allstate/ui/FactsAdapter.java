@@ -5,11 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.allstate.alexandreroussiere.allstate.R;
 
@@ -20,7 +16,6 @@ import java.util.ArrayList;
  */
 public class FactsAdapter extends RecyclerView.Adapter<FactsAdapter.FactsRowHolder> {
 
-    private OnItemClickListener itemClickListener;
     private ArrayList<String> data = new ArrayList<>();
     private Context mContext;
 
@@ -45,36 +40,18 @@ public class FactsAdapter extends RecyclerView.Adapter<FactsAdapter.FactsRowHold
         return data.size();
     }
 
-    public String getFact(int position) { return data.get(position); }
-
-    public class FactsRowHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class FactsRowHolder extends RecyclerView.ViewHolder {
 
         TextView facts;
         public FactsRowHolder(View itemView) {
             super(itemView);
             facts = (TextView) itemView.findViewById(R.id.fact_description);
-            itemView.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View v) {
-
-            if (itemClickListener != null) {
-                itemClickListener.onItemClick(v, getAdapterPosition());
-            }
-        }
     }
 
     public void setData(ArrayList<String> facts){
         data = facts;
-    }
-
-    public interface OnItemClickListener{
-        void onItemClick(View v, int position);
-    }
-
-    public void setOnItemClickListener(final OnItemClickListener mItemClickListener){
-        this.itemClickListener = mItemClickListener;
     }
 
 }
